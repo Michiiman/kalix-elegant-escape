@@ -1,16 +1,67 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Link } from "react-router-dom";
+import Layout from "@/components/Layout";
+import ProfileCard from "@/components/ProfileCard";
+import { profiles } from "@/data/profiles";
+import { Shield, Eye, Star } from "lucide-react";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const Index = () => {
+  const featured = profiles.filter((p) => p.featured);
+
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
-    </div>
+    <Layout>
+      {/* Hero */}
+      <section className="relative flex items-center justify-center min-h-[85vh] bg-gradient-to-b from-background via-card to-background overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(220,38,38,0.06)_0%,_transparent_70%)]" />
+        <div className="relative text-center px-4 max-w-3xl mx-auto">
+          <h1 className="font-heading text-4xl md:text-6xl font-bold text-silver animate-fade-in leading-tight">
+            Experiencias exclusivas,
+            <br />
+            <span className="text-primary">discreción</span> y elegancia
+          </h1>
+          <p className="mt-6 text-muted-foreground text-lg md:text-xl animate-fade-in-delay leading-relaxed">
+            Compañía selecta para quienes valoran la privacidad, el lujo y los momentos inolvidables.
+          </p>
+          <Link
+            to="/catalogo"
+            className="inline-block mt-8 bg-primary text-primary-foreground px-10 py-3.5 rounded-md font-medium text-base transition-all duration-300 hover:bg-primary/80 hover:shadow-[0_0_30px_rgba(220,38,38,0.35)] animate-fade-in-delay-2"
+          >
+            Ver Catálogo
+          </Link>
+        </div>
+      </section>
+
+      {/* Values */}
+      <section className="py-20 bg-card-alt">
+        <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+          {[
+            { icon: Shield, title: "Discreción Total", desc: "Tu privacidad es sagrada. Protocolos estrictos de confidencialidad." },
+            { icon: Star, title: "Selección Premium", desc: "Perfiles verificados y cuidadosamente seleccionados." },
+            { icon: Eye, title: "Experiencia Única", desc: "Momentos diseñados para superar cualquier expectativa." },
+          ].map((v) => (
+            <div key={v.title} className="space-y-3">
+              <v.icon className="mx-auto text-primary" size={32} />
+              <h3 className="font-heading text-lg font-semibold text-silver">{v.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{v.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Featured profiles */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <h2 className="font-heading text-3xl font-bold text-center text-silver mb-12">
+            Perfiles <span className="text-primary">Destacados</span>
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featured.map((p) => (
+              <ProfileCard key={p.id} profile={p} />
+            ))}
+          </div>
+        </div>
+      </section>
+    </Layout>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;
