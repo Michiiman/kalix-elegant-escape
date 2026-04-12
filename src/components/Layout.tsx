@@ -1,35 +1,31 @@
 import { ReactNode } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
-import silhouetteLeft from "@/assets/silhouette-left.png";
-import silhouetteRight from "@/assets/silhouette-right.png";
+import silhouette from "@/assets/silhouette.png";
 
 const Layout = ({ children }: { children: ReactNode }) => (
   <div className="min-h-screen flex flex-col bg-background relative overflow-x-hidden">
     {/* Left silhouette */}
-    <div
-      className="hidden lg:block fixed left-0 top-1/2 -translate-y-1/2 pointer-events-none z-0 opacity-[0.07]"
-    >
+    <div className="hidden lg:block fixed left-0 top-1/2 -translate-y-1/2 pointer-events-none z-0 opacity-[0.08]">
       <img
-        src={silhouetteLeft}
+        src={silhouette}
         alt=""
-        width={280}
-        height={560}
-        className="max-h-[80vh] w-auto"
+        width={220}
+        height={440}
+        className="max-h-[70vh] w-auto"
+        style={{ transform: "scaleX(-1)" }}
         loading="lazy"
       />
     </div>
 
-    {/* Right silhouette */}
-    <div
-      className="hidden lg:block fixed right-0 top-1/2 -translate-y-1/2 pointer-events-none z-0 opacity-[0.07]"
-    >
+    {/* Right silhouette (mirrored) */}
+    <div className="hidden lg:block fixed right-0 top-1/2 -translate-y-1/2 pointer-events-none z-0 opacity-[0.08]">
       <img
-        src={silhouetteRight}
+        src={silhouette}
         alt=""
-        width={280}
-        height={560}
-        className="max-h-[80vh] w-auto"
+        width={220}
+        height={440}
+        className="max-h-[70vh] w-auto"
         loading="lazy"
       />
     </div>
