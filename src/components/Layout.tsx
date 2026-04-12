@@ -6,7 +6,7 @@ import silhouette from "@/assets/silhouette.png";
 const Layout = ({ children }: { children: ReactNode }) => (
   <div className="min-h-screen flex flex-col bg-background relative overflow-x-hidden">
     {/* Left silhouette */}
-    <div className="hidden lg:block fixed left-0 top-1/2 -translate-y-1/2 pointer-events-none z-0 opacity-[0.08]">
+    <div className="hidden lg:block fixed top-1/2 -translate-y-1/2 pointer-events-none z-0 opacity-[0.08]" style={{ left: "-15%" }}>
       <img
         src={silhouette}
         alt=""
@@ -19,7 +19,7 @@ const Layout = ({ children }: { children: ReactNode }) => (
     </div>
 
     {/* Right silhouette (mirrored) */}
-    <div className="hidden lg:block fixed right-0 top-1/2 -translate-y-1/2 pointer-events-none z-0 opacity-[0.08]">
+    <div className="hidden lg:block fixed top-1/2 -translate-y-1/2 pointer-events-none z-0 opacity-[0.08]" style={{ right: "-15%" }}>
       <img
         src={silhouette}
         alt=""
