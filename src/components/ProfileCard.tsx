@@ -7,7 +7,7 @@ const ProfileCard = ({ profile }: { profile: Profile }) => (
   <div className="group bg-card rounded-lg border border-border overflow-hidden transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(220,38,38,0.1)]">
     <div className="aspect-[3/4] bg-secondary flex items-center justify-center overflow-hidden">
       <img
-        src={profile.images[0]}
+        src={profile.images[0].url}
         alt={profile.name}
         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
       />

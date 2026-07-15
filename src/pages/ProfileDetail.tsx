@@ -2,13 +2,16 @@ import { useParams, Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { profiles } from "@/data/profiles";
 import { MapPin, ArrowLeft } from "lucide-react";
-import { useState } from "react";
+import { useEffect } from "react";
 import WhatsAppContactPicker from "@/components/WhatsAppContactPicker";
 
 const ProfileDetail = () => {
   const { id } = useParams();
   const profile = profiles.find((p) => p.id === id);
-  const [activeImg, setActiveImg] = useState(0);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, [id]);
 
   if (!profile) {
     return (
@@ -23,31 +26,13 @@ const ProfileDetail = () => {
 
   return (
     <Layout>
-      <section className="py-16">
+      <section className="pt-6 pb-16">
         <div className="container mx-auto px-4 max-w-4xl">
           <Link to="/catalogo" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-8">
             <ArrowLeft size={16} /> Volver al catálogo
           </Link>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Gallery */}
-            <div className="space-y-3">
-              <div className="aspect-[3/4] bg-secondary rounded-lg overflow-hidden">
-                <img src={profile.images[activeImg]} alt={profile.name} className="w-full h-full object-cover" />
-              </div>
-              <div className="flex gap-2">
-                {profile.images.map((img, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setActiveImg(i)}
-                    className={`w-16 h-20 rounded overflow-hidden border-2 transition-colors ${i === activeImg ? "border-primary" : "border-border hover:border-primary/50"}`}
-                  >
-                    <img src={img} alt="" className="w-full h-full object-cover" />
-                  </button>
-                ))}
-              </div>
-            </div>
-
+          <div className="flex flex-col gap-8 max-w-2xl mx-auto">
             {/* Info */}
             <div className="space-y-6">
               <div>
@@ -76,6 +61,27 @@ const ProfileDetail = () => {
                   className="py-3 text-base"
                 />
               )}
+            </div>
+
+            {/* Photos — vertical stack */}
+            <div>
+              {profile.images.map((image, i) => (
+                <div key={i}>
+                  <div className="rounded-lg overflow-hidden bg-secondary">
+                    <img
+                      src={image.url}
+                      alt={image.label}
+                      className="w-full block"
+                    />
+                  </div>
+                  <p className="mt-3 text-sm text-muted-foreground italic px-1">
+                    {image.label}
+                  </p>
+                  {i < profile.images.length - 1 && (
+                    <hr className="my-8 border-border" />
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </div>
