@@ -1,6 +1,7 @@
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, User } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import TermsModal from "@/components/TermsModal";
 
 export interface WhatsAppContact {
@@ -12,6 +13,8 @@ export interface WhatsAppContact {
 interface WhatsAppContactPickerProps {
   contacts: WhatsAppContact[];
   className?: string;
+  /** Omite el modal de T&C y abre el selector de contacto directamente */
+  skipTerms?: boolean;
 }
 
 const buildWhatsAppUrl = (phone: string): string => {
@@ -19,7 +22,7 @@ const buildWhatsAppUrl = (phone: string): string => {
   return `https://wa.me/${clean}`;
 };
 
-const WhatsAppContactPicker = ({ contacts, className }: WhatsAppContactPickerProps) => {
+const WhatsAppContactPicker = ({ contacts, className, skipTerms = false }: WhatsAppContactPickerProps) => {
   const [showTerms, setShowTerms] = useState(false);
 
   if (!contacts || contacts.length === 0) return null;
@@ -29,6 +32,55 @@ const WhatsAppContactPicker = ({ contacts, className }: WhatsAppContactPickerPro
     className
   );
 
+  /* ── Modo sin T&C: Popover directo ── */
+  if (skipTerms) {
+    if (contacts.length === 1) {
+      return (
+        <a href={buildWhatsAppUrl(contacts[0].phone)} target="_blank" rel="noopener noreferrer" className={buttonClass}>
+          <MessageCircle size={16} /> Contactar por WhatsApp
+        </a>
+      );
+    }
+    return (
+      <Popover>
+        <PopoverTrigger asChild>
+          <button type="button" className={buttonClass}>
+            <MessageCircle size={16} /> Contactar por WhatsApp
+          </button>
+        </PopoverTrigger>
+        <PopoverContent className="w-64 p-3 bg-card border border-gold/20 shadow-lg" align="center" sideOffset={6}>
+          <p className="text-xs text-muted-foreground uppercase tracking-widest font-semibold mb-2 px-1">
+            Selecciona un contacto
+          </p>
+          <div className="space-y-1">
+            {contacts.map((contact, i) => (
+              <a
+                key={i}
+                href={buildWhatsAppUrl(contact.phone)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-3 px-3 py-2.5 rounded-md hover:bg-secondary transition-colors group"
+              >
+                <div className="mt-0.5 shrink-0 w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center">
+                  <User size={13} className="text-primary" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm font-medium text-silver leading-tight truncate">{contact.name}</p>
+                  {contact.role && (
+                    <p className="text-xs text-muted-foreground leading-tight mt-0.5 truncate">{contact.role}</p>
+                  )}
+                  <p className="text-xs text-gold font-medium mt-1">{contact.phone}</p>
+                </div>
+                <MessageCircle size={14} className="text-primary/60 group-hover:text-primary mt-0.5 shrink-0 transition-colors" />
+              </a>
+            ))}
+          </div>
+        </PopoverContent>
+      </Popover>
+    );
+  }
+
+  /* ── Modo con T&C (comportamiento por defecto) ── */
   return (
     <>
       <button type="button" onClick={() => setShowTerms(true)} className={buttonClass}>

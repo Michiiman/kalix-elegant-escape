@@ -1,87 +1,75 @@
 import Layout from "@/components/Layout";
-import { useState } from "react";
-import { Upload } from "lucide-react";
+import { User, MapPin, Phone, FileText, Camera, Hash } from "lucide-react";
+import WhatsAppContactPicker from "@/components/WhatsAppContactPicker";
+import type { WhatsAppContact } from "@/components/WhatsAppContactPicker";
 
-const TrabajaConNosotros = () => {
-  const [submitted, setSubmitted] = useState(false);
+const AGENCY_CONTACTS: WhatsAppContact[] = [
+  { name: "Asesor Comercial", role: "Reservas y tarifas", phone: "+573155140200" },
+  { name: "Coordinador", role: "Disponibilidad y agenda", phone: "+573155140201" },
+];
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
+const REQUIRED_INFO = [
+  { icon: User,     text: "Nombre o nombre artístico" },
+  { icon: Hash,     text: "Edad" },
+  { icon: MapPin,   text: "Ciudad de residencia" },
+  { icon: Phone,    text: "Medio de contacto" },
+  { icon: FileText, text: "Breve descripción de tu experiencia" },
+  { icon: Camera,   text: "Fotografías recientes" },
+];
 
-  return (
-    <Layout>
-      <section className="py-16">
-        <div className="container mx-auto px-4 max-w-2xl">
-          <h1 className="font-heading text-3xl md:text-4xl font-bold text-silver text-center mb-4">
-            Trabaja con <span className="text-primary">Nosotros</span>
-          </h1>
-          <p className="text-center text-muted-foreground mb-10 leading-relaxed">
-            ¿Buscas una plataforma profesional, discreta y de confianza? Únete a nuestro equipo exclusivo. 
-            Valoramos la elegancia, la profesionalidad y la privacidad.
-          </p>
+const TrabajaConNosotros = () => (
+  <Layout>
+    <section className="py-16">
+      <div className="container mx-auto px-4 max-w-xl">
+        <h1 className="font-heading text-3xl md:text-4xl font-bold text-silver text-center mb-10">
+          Trabaja con <span className="text-primary">Nosotros</span>
+        </h1>
 
-          {submitted ? (
-            <div className="text-center py-20 space-y-4 animate-fade-in">
-              <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto">
-                <span className="text-primary text-2xl">✓</span>
-              </div>
-              <h2 className="font-heading text-2xl text-silver">¡Solicitud enviada!</h2>
-              <p className="text-muted-foreground">Revisaremos tu información y nos pondremos en contacto contigo pronto.</p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-5">
-              {[
-                { label: "Nombre", name: "nombre", type: "text", placeholder: "Tu nombre artístico" },
-                { label: "Edad", name: "edad", type: "number", placeholder: "Tu edad" },
-                { label: "Ciudad", name: "ciudad", type: "text", placeholder: "Ciudad de residencia" },
-                { label: "Contacto (teléfono o email)", name: "contacto", type: "text", placeholder: "Cómo podemos contactarte" },
-              ].map((f) => (
-                <div key={f.name}>
-                  <label className="block text-sm text-silver mb-1.5">{f.label}</label>
-                  <input
-                    type={f.type}
-                    name={f.name}
-                    placeholder={f.placeholder}
-                    required
-                    className="w-full bg-card border border-border rounded-md px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors"
-                  />
-                </div>
+        <div className="bg-card border border-gold/20 rounded-lg shadow-[0_0_40px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(212,175,55,0.08)] p-8 space-y-7">
+
+          {/* Intro */}
+          <div className="text-center space-y-3">
+            <h2 className="font-heading text-xl font-semibold text-silver">
+              ¿Quieres formar parte de nuestro equipo?
+            </h2>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Envíanos tu información directamente por WhatsApp. Nuestro equipo revisará
+              tu perfil de manera <span className="text-silver">confidencial</span> y se
+              pondrá en contacto contigo si tu perfil se ajusta a nuestras necesidades.
+            </p>
+          </div>
+
+          <hr className="border-border/60" />
+
+          {/* Lista de información requerida */}
+          <div className="space-y-3">
+            <p className="text-xs text-muted-foreground uppercase tracking-widest font-semibold">
+              Incluye en tu mensaje
+            </p>
+            <ul className="space-y-2.5">
+              {REQUIRED_INFO.map(({ icon: Icon, text }) => (
+                <li key={text} className="flex items-center gap-3 text-sm text-foreground">
+                  <span className="shrink-0 w-7 h-7 rounded-full bg-gold/10 flex items-center justify-center">
+                    <Icon size={13} className="text-gold" />
+                  </span>
+                  {text}
+                </li>
               ))}
+            </ul>
+          </div>
 
-              <div>
-                <label className="block text-sm text-silver mb-1.5">Experiencia</label>
-                <textarea
-                  name="experiencia"
-                  placeholder="Cuéntanos brevemente sobre ti y tu experiencia"
-                  rows={4}
-                  required
-                  className="w-full bg-card border border-border rounded-md px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary transition-colors resize-none"
-                />
-              </div>
+          <hr className="border-border/60" />
 
-              <div>
-                <label className="block text-sm text-silver mb-1.5">Fotos</label>
-                <label className="flex items-center justify-center gap-2 w-full bg-card border border-dashed border-border rounded-md py-8 text-sm text-muted-foreground cursor-pointer hover:border-primary/50 transition-colors">
-                  <Upload size={18} />
-                  <span>Haz clic para subir tus fotos</span>
-                  <input type="file" multiple accept="image/*" className="hidden" />
-                </label>
-              </div>
-
-              <button
-                type="submit"
-                className="w-full bg-primary text-primary-foreground py-3 rounded-md font-medium transition-all duration-300 hover:bg-primary/80 hover:shadow-[0_0_20px_rgba(220,38,38,0.3)]"
-              >
-                Enviar Solicitud
-              </button>
-            </form>
-          )}
+          {/* Botón WhatsApp sin T&C */}
+          <WhatsAppContactPicker
+            contacts={AGENCY_CONTACTS}
+            skipTerms
+            className="py-3 text-base"
+          />
         </div>
-      </section>
-    </Layout>
-  );
-};
+      </div>
+    </section>
+  </Layout>
+);
 
 export default TrabajaConNosotros;
