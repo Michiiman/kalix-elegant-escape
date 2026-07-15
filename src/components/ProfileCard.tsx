@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import type { Profile } from "@/data/profiles";
 import { MapPin } from "lucide-react";
+import WhatsAppContactPicker from "@/components/WhatsAppContactPicker";
 
 const ProfileCard = ({ profile }: { profile: Profile }) => (
   <div className="group bg-card rounded-lg border border-border overflow-hidden transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(220,38,38,0.1)]">
@@ -27,6 +28,9 @@ const ProfileCard = ({ profile }: { profile: Profile }) => (
       >
         Ver Perfil
       </Link>
+      {profile.whatsappContacts && profile.whatsappContacts.length > 0 && (
+        <WhatsAppContactPicker contacts={profile.whatsappContacts} />
+      )}
     </div>
   </div>
 );

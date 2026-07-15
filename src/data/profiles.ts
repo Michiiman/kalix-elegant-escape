@@ -1,3 +1,9 @@
+export interface WhatsAppContact {
+  name: string;
+  role?: string;
+  phone: string;
+}
+
 export interface Profile {
   id: string;
   name: string;
@@ -9,6 +15,7 @@ export interface Profile {
   location: string;
   images: string[];
   featured: boolean;
+  whatsappContacts?: WhatsAppContact[];
 }
 
 export const profiles: Profile[] = [
@@ -23,6 +30,10 @@ export const profiles: Profile[] = [
     location: "Madrid Centro",
     images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
     featured: true,
+    whatsappContacts: [
+      { name: "Asesor Comercial", role: "Reservas y tarifas", phone: "+573155140200" },
+      { name: "Coordinador", role: "Disponibilidad y agenda", phone: "+573155140201" },
+    ],
   },
   {
     id: "isabella",
@@ -35,6 +46,10 @@ export const profiles: Profile[] = [
     location: "Barcelona, Eixample",
     images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
     featured: true,
+    whatsappContacts: [
+      { name: "Asesor Comercial", role: "Reservas y tarifas", phone: "+573155140200" },
+      { name: "Coordinador", role: "Disponibilidad y agenda", phone: "+573155140201" },
+    ],
   },
   {
     id: "camila",
@@ -47,6 +62,10 @@ export const profiles: Profile[] = [
     location: "Valencia Centro",
     images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
     featured: true,
+    whatsappContacts: [
+      { name: "Asesor Comercial", role: "Reservas y tarifas", phone: "+573155140200" },
+      { name: "Coordinador", role: "Disponibilidad y agenda", phone: "+573155140201" },
+    ],
   },
   {
     id: "sofia",
@@ -59,6 +78,10 @@ export const profiles: Profile[] = [
     location: "Madrid Norte",
     images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
     featured: false,
+    whatsappContacts: [
+      { name: "Asesor Comercial", role: "Reservas y tarifas", phone: "+573155140200" },
+      { name: "Coordinador", role: "Disponibilidad y agenda", phone: "+573155140201" },
+    ],
   },
   {
     id: "lucia",
@@ -71,6 +94,10 @@ export const profiles: Profile[] = [
     location: "Sevilla Centro",
     images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
     featured: false,
+    whatsappContacts: [
+      { name: "Asesor Comercial", role: "Reservas y tarifas", phone: "+573155140200" },
+      { name: "Coordinador", role: "Disponibilidad y agenda", phone: "+573155140201" },
+    ],
   },
   {
     id: "martina",
@@ -83,6 +110,10 @@ export const profiles: Profile[] = [
     location: "Barcelona, Diagonal",
     images: ["/placeholder.svg", "/placeholder.svg", "/placeholder.svg"],
     featured: false,
+    whatsappContacts: [
+      { name: "Asesor Comercial", role: "Reservas y tarifas", phone: "+573155140200" },
+      { name: "Coordinador", role: "Disponibilidad y agenda", phone: "+573155140201" },
+    ],
   },
 ];
 

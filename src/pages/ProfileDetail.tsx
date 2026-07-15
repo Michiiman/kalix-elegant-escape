@@ -1,8 +1,9 @@
 import { useParams, Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { profiles } from "@/data/profiles";
-import { MapPin, ArrowLeft, MessageCircle } from "lucide-react";
+import { MapPin, ArrowLeft } from "lucide-react";
 import { useState } from "react";
+import WhatsAppContactPicker from "@/components/WhatsAppContactPicker";
 
 const ProfileDetail = () => {
   const { id } = useParams();
@@ -19,8 +20,6 @@ const ProfileDetail = () => {
       </Layout>
     );
   }
-
-  const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(`Hola, estoy interesado/a en el perfil de ${profile.name} en Kalix Scort.`)}`;
 
   return (
     <Layout>
@@ -71,14 +70,12 @@ const ProfileDetail = () => {
                 </ul>
               </div>
 
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 w-full bg-primary text-primary-foreground py-3 rounded-md font-medium transition-all duration-300 hover:bg-primary/80 hover:shadow-[0_0_20px_rgba(220,38,38,0.3)]"
-              >
-                <MessageCircle size={18} /> Contactar por WhatsApp
-              </a>
+              {profile.whatsappContacts && profile.whatsappContacts.length > 0 && (
+                <WhatsAppContactPicker
+                  contacts={profile.whatsappContacts}
+                  className="py-3 text-base"
+                />
+              )}
             </div>
           </div>
         </div>
