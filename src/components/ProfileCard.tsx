@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import type { Profile } from "@/data/profiles";
-import { MapPin } from "lucide-react";
 import WhatsAppContactPicker from "@/components/WhatsAppContactPicker";
 
 const ProfileCard = ({ profile }: { profile: Profile }) => (
@@ -17,11 +16,9 @@ const ProfileCard = ({ profile }: { profile: Profile }) => (
         <h3 className="font-heading text-xl font-semibold text-silver">{profile.name}</h3>
         <span className="text-xs text-muted-foreground">{profile.age} años</span>
       </div>
-      <div className="flex items-center gap-1 text-xs text-muted-foreground">
-        <MapPin size={12} />
-        {profile.city}
-      </div>
-      <p className="text-sm text-muted-foreground leading-relaxed">{profile.shortDesc}</p>
+      <p className="text-sm text-muted-foreground leading-relaxed">
+        {profile.height} · {profile.weight} · Ojos {profile.eyes} · Cabello {profile.hair}
+      </p>
       <Link
         to={`/catalogo/${profile.id}`}
         className="inline-block w-full text-center bg-primary text-primary-foreground text-sm font-medium py-2.5 rounded-md transition-all duration-300 hover:bg-primary/80 hover:shadow-[0_0_20px_rgba(220,38,38,0.3)]"

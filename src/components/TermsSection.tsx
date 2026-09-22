@@ -1,44 +1,17 @@
-import { X, MessageCircle } from "lucide-react";
-import { useEffect } from "react";
 import logo from "@/img/Kalix_scort_logo-removebg-preview.png";
-import type { WhatsAppContact } from "@/data/profiles";
-import { buildWhatsAppUrl } from "@/components/WhatsAppContactPicker";
 
-interface TermsModalProps {
-  open: boolean;
-  onClose: () => void;
-  contacts: WhatsAppContact[];
-}
-
-const TermsModal = ({ open, onClose, contacts }: TermsModalProps) => {
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
-  }, [open]);
-
-  if (!open) return null;
-
+const TermsSection = () => {
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
-      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
-    >
-      <div className="relative bg-card border border-border rounded-lg w-full max-w-lg max-h-[85vh] flex flex-col shadow-2xl">
+    <div className="relative bg-card border border-border rounded-lg w-full shadow-2xl">
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-border shrink-0">
           <h2 className="font-heading text-lg font-bold text-primary tracking-widest uppercase">
             Términos y Condiciones
           </h2>
-          <button
-            onClick={onClose}
-            className="text-muted-foreground hover:text-silver transition-colors"
-          >
-            <X size={20} />
-          </button>
         </div>
 
         {/* Body */}
-        <div className="overflow-y-auto px-6 py-5 space-y-5 text-sm text-muted-foreground leading-relaxed">
+        <div className="px-6 py-5 space-y-5 text-sm text-muted-foreground leading-relaxed">
           <p className="text-center font-heading text-silver font-semibold tracking-widest text-base">
             KALIX ESCORT
           </p>
@@ -115,49 +88,8 @@ const TermsModal = ({ open, onClose, contacts }: TermsModalProps) => {
             <p>Reservar la escort mínimo un día antes del evento deseado.</p>
           </div>
         </div>
-
-        {/* Footer */}
-        <div className="px-6 py-4 border-t border-border shrink-0">
-          {contacts.length === 1 ? (
-            <a
-              href={buildWhatsAppUrl(contacts[0].phone)}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={onClose}
-              className="w-full flex items-center justify-center gap-2 bg-primary text-primary-foreground py-3 rounded-md font-medium transition-all duration-300 hover:bg-primary/80 hover:shadow-[0_0_20px_rgba(220,38,38,0.3)]"
-            >
-              <MessageCircle size={18} /> Acepto — Ir a WhatsApp
-            </a>
-          ) : (
-            <div className="space-y-2">
-              <p className="text-xs text-muted-foreground text-center pb-1">
-                Acepto los términos. Comunicarme con:
-              </p>
-              {contacts.map((contact, i) => (
-                <a
-                  key={i}
-                  href={buildWhatsAppUrl(contact.phone)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={onClose}
-                  className="w-full flex items-center gap-3 bg-primary text-primary-foreground px-4 py-2.5 rounded-md font-medium transition-all duration-300 hover:bg-primary/80 hover:shadow-[0_0_20px_rgba(220,38,38,0.3)]"
-                >
-                  <MessageCircle size={16} className="shrink-0" />
-                  <div className="text-left min-w-0 flex-1">
-                    <p className="text-sm font-medium leading-tight">{contact.name}</p>
-                    {contact.role && (
-                      <p className="text-xs opacity-75 leading-tight mt-0.5">{contact.role}</p>
-                    )}
-                  </div>
-                  <span className="text-xs opacity-75 shrink-0">{contact.phone}</span>
-                </a>
-              ))}
-            </div>
-          )}
-        </div>
-      </div>
     </div>
   );
 };
 
-export default TermsModal;
+export default TermsSection;

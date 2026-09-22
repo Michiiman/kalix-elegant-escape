@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { profiles } from "@/data/profiles";
-import { MapPin, ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { useEffect } from "react";
 import WhatsAppContactPicker from "@/components/WhatsAppContactPicker";
 
@@ -24,6 +24,15 @@ const ProfileDetail = () => {
     );
   }
 
+  const stats = [
+    { label: "Edad", value: `${profile.age} años` },
+    { label: "Estatura", value: profile.height },
+    { label: "Peso", value: profile.weight },
+    { label: "Ojos", value: profile.eyes },
+    { label: "Cabello", value: profile.hair },
+    { label: "Busto", value: profile.bust },
+  ];
+
   return (
     <Layout>
       <section className="pt-6 pb-16">
@@ -37,20 +46,15 @@ const ProfileDetail = () => {
             <div className="space-y-6">
               <div>
                 <h1 className="font-heading text-3xl font-bold text-silver">{profile.name}</h1>
-                <div className="flex items-center gap-3 mt-2 text-sm text-muted-foreground">
-                  <span>{profile.age} años</span>
-                  <span className="text-border">|</span>
-                  <span className="flex items-center gap-1"><MapPin size={14} /> {profile.location}</span>
-                </div>
               </div>
 
-              <p className="text-foreground leading-relaxed">{profile.fullDesc}</p>
-
               <div>
-                <h3 className="text-silver font-semibold text-sm uppercase tracking-wider mb-3">Servicios</h3>
+                <h3 className="text-silver font-semibold text-sm uppercase tracking-wider mb-3">Ficha Técnica</h3>
                 <ul className="grid grid-cols-2 gap-2">
-                  {profile.services.map((s) => (
-                    <li key={s} className="text-sm text-muted-foreground bg-secondary rounded-md px-3 py-2">{s}</li>
+                  {stats.map((s) => (
+                    <li key={s.label} className="text-sm text-muted-foreground bg-secondary rounded-md px-3 py-2">
+                      <span className="text-silver">{s.label}:</span> {s.value}
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -70,13 +74,10 @@ const ProfileDetail = () => {
                   <div className="rounded-lg overflow-hidden bg-secondary">
                     <img
                       src={image.url}
-                      alt={image.label}
+                      alt={`Fotografía de ${profile.name}${profile.images.length > 1 ? ` ${i + 1}` : ""}`}
                       className="w-full block"
                     />
                   </div>
-                  <p className="mt-3 text-sm text-muted-foreground italic px-1">
-                    {image.label}
-                  </p>
                   {i < profile.images.length - 1 && (
                     <hr className="my-8 border-border" />
                   )}

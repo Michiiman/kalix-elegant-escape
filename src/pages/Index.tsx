@@ -3,10 +3,9 @@ import Layout from "@/components/Layout";
 import ProfileCard from "@/components/ProfileCard";
 import { profiles } from "@/data/profiles";
 import { Shield, Eye, Star } from "lucide-react";
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
 
 const Index = () => {
-  const featured = profiles.filter((p) => p.featured);
-
   return (
     <Layout>
       {/* Hero */}
@@ -47,16 +46,24 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Featured profiles */}
+      {/* Profiles */}
       <section className="py-20">
         <div className="container mx-auto px-4">
           <h2 className="font-heading text-3xl font-bold text-center text-silver mb-12">
             Perfiles <span className="text-primary">Destacados</span>
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featured.map((p) => (
-              <ProfileCard key={p.id} profile={p} />
-            ))}
+          <div className="relative px-6 md:px-14">
+            <Carousel opts={{ align: "start", loop: true }} className="w-full">
+              <CarouselContent>
+                {profiles.map((p) => (
+                  <CarouselItem key={p.id} className="basis-full sm:basis-1/2 lg:basis-1/3">
+                    <ProfileCard profile={p} />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="-left-4 md:-left-10" />
+              <CarouselNext className="-right-4 md:-right-10" />
+            </Carousel>
           </div>
         </div>
       </section>

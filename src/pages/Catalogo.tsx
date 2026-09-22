@@ -1,26 +1,25 @@
 import { useState, useMemo } from "react";
 import Layout from "@/components/Layout";
 import ProfileCard from "@/components/ProfileCard";
-import { profiles, cities } from "@/data/profiles";
+import { profiles } from "@/data/profiles";
 import { Search } from "lucide-react";
 
 const Catalogo = () => {
   const [search, setSearch] = useState("");
-  const [city, setCity] = useState("");
-  const [ageRange, setAgeRange] = useState("");
+  const [ageFilter, setAgeFilter] = useState("");
+
+  const ages = useMemo(
+    () => [...new Set(profiles.map((p) => p.age))].sort((a, b) => a - b),
+    []
+  );
 
   const filtered = useMemo(() => {
     return profiles.filter((p) => {
-      const matchSearch = p.name.toLowerCase().includes(search.toLowerCase()) || p.shortDesc.toLowerCase().includes(search.toLowerCase());
-      const matchCity = !city || p.city === city;
-      const matchAge =
-        !ageRange ||
-        (ageRange === "18-24" && p.age >= 18 && p.age <= 24) ||
-        (ageRange === "25-30" && p.age >= 25 && p.age <= 30) ||
-        (ageRange === "30+" && p.age > 30);
-      return matchSearch && matchCity && matchAge;
+      const matchSearch = p.name.toLowerCase().includes(search.toLowerCase());
+      const matchAge = !ageFilter || p.age === Number(ageFilter);
+      return matchSearch && matchAge;
     });
-  }, [search, city, ageRange]);
+  }, [search, ageFilter]);
 
   return (
     <Layout>
@@ -43,24 +42,14 @@ const Catalogo = () => {
               />
             </div>
             <select
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
+              value={ageFilter}
+              onChange={(e) => setAgeFilter(e.target.value)}
               className="bg-card border border-border rounded-md px-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-primary transition-colors"
             >
-              <option value="">Todas las ciudades</option>
-              {cities.map((c) => (
-                <option key={c} value={c}>{c}</option>
+              <option value="">Edad</option>
+              {ages.map((age) => (
+                <option key={age} value={age}>{age}</option>
               ))}
-            </select>
-            <select
-              value={ageRange}
-              onChange={(e) => setAgeRange(e.target.value)}
-              className="bg-card border border-border rounded-md px-4 py-2.5 text-sm text-foreground focus:outline-none focus:border-primary transition-colors"
-            >
-              <option value="">Todas las edades</option>
-              <option value="18-24">18 - 24</option>
-              <option value="25-30">25 - 30</option>
-              <option value="30+">30+</option>
             </select>
           </div>
 
@@ -81,3 +70,4 @@ const Catalogo = () => {
 };
 
 export default Catalogo;
+

@@ -1,16 +1,9 @@
 import Layout from "@/components/Layout";
-import { useState } from "react";
-import { MessageCircle } from "lucide-react";
-import TermsModal from "@/components/TermsModal";
-
-const AGENCY_CONTACTS = [
-  { name: "Asesor Comercial", role: "Reservas y tarifas", phone: "+573155140200" },
-  { name: "Coordinador", role: "Disponibilidad y agenda", phone: "+573155140201" },
-];
+import TermsSection from "@/components/TermsSection";
+import WhatsAppContactPicker from "@/components/WhatsAppContactPicker";
+import { AGENCY_CONTACT } from "@/data/profiles";
 
 const Contacto = () => {
-  const [showTerms, setShowTerms] = useState(false);
-
   return (
     <Layout>
       <section className="py-16">
@@ -22,22 +15,17 @@ const Contacto = () => {
             ¿Tienes alguna consulta? Escríbenos y te responderemos con total discreción.
           </p>
 
-          <div className="flex flex-col gap-4 items-center">
-            <button
-              onClick={() => setShowTerms(true)}
-              className="w-full sm:w-auto px-10 flex items-center justify-center gap-2 bg-primary text-primary-foreground py-3 rounded-md font-medium transition-all duration-300 hover:bg-primary/80 hover:shadow-[0_0_20px_rgba(220,38,38,0.3)]"
-            >
-              <MessageCircle size={18} /> Comunicarse por WhatsApp
-            </button>
+          <TermsSection />
+
+          <div className="flex flex-col gap-2 items-center mt-10">
+            <h2 className="font-heading text-xl font-semibold text-silver">{AGENCY_CONTACT.name}</h2>
+            <p className="text-sm text-muted-foreground mb-2">3182309780</p>
+            <div className="w-full sm:w-auto sm:min-w-[280px]">
+              <WhatsAppContactPicker contacts={[AGENCY_CONTACT]} className="py-3 text-base" />
+            </div>
           </div>
         </div>
       </section>
-
-      <TermsModal
-        open={showTerms}
-        onClose={() => setShowTerms(false)}
-        contacts={AGENCY_CONTACTS}
-      />
     </Layout>
   );
 };

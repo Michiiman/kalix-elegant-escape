@@ -1,12 +1,7 @@
 import Layout from "@/components/Layout";
 import { User, MapPin, Phone, FileText, Camera, Hash } from "lucide-react";
 import WhatsAppContactPicker from "@/components/WhatsAppContactPicker";
-import type { WhatsAppContact } from "@/components/WhatsAppContactPicker";
-
-const AGENCY_CONTACTS: WhatsAppContact[] = [
-  { name: "Asesor Comercial", role: "Reservas y tarifas", phone: "+573155140200" },
-  { name: "Coordinador", role: "Disponibilidad y agenda", phone: "+573155140201" },
-];
+import { AGENCY_CONTACT } from "@/data/profiles";
 
 const REQUIRED_INFO = [
   { icon: User,     text: "Nombre o nombre artístico" },
@@ -60,10 +55,9 @@ const TrabajaConNosotros = () => (
 
           <hr className="border-border/60" />
 
-          {/* Botón WhatsApp sin T&C */}
+          {/* Botón WhatsApp */}
           <WhatsAppContactPicker
-            contacts={AGENCY_CONTACTS}
-            skipTerms
+            contacts={[AGENCY_CONTACT]}
             className="py-3 text-base"
           />
         </div>

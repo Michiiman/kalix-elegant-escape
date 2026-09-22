@@ -6,136 +6,87 @@ export interface WhatsAppContact {
 
 export interface ProfileImage {
   url: string;
-  label: string;
 }
 
 export interface Profile {
   id: string;
   name: string;
   age: number;
-  city: string;
-  shortDesc: string;
-  fullDesc: string;
-  services: string[];
-  location: string;
+  height: string;
+  weight: string;
+  eyes: string;
+  hair: string;
+  bust: string;
   images: ProfileImage[];
-  featured: boolean;
+  order: number;
   whatsappContacts?: WhatsAppContact[];
 }
 
-const PROFILE_IMAGES: ProfileImage[] = [
-  {
-    url: "https://www.nuevamujer.com/resizer/v2/3BMEJU3TBRHZJA232Q2TMXWZOY.png?auth=5d971fb55d0b7a9d301ce589a61c4b04e8c2beb88a170d041602cf7ee7acf3d2&width=800&height=1082",
-    label: "Fotografía de presentación principal",
-  },
-  {
-    url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnlFFpdkEcdIAF3j6XcqvJNmLzsvk8PdKwL9OtXPTORK6NcV-aG8-bObb0&s=10",
-    label: "Fotografía de perfil",
-  },
-  {
-    url: "https://cloudfront-us-east-1.images.arcpublishing.com/infobae/M56Y7RBSLBB7HE6MJJWC7J2V3Q.png",
-    label: "Fotografía adicional",
-  },
+/** Único contacto de WhatsApp de la agencia, reutilizado en todo el sitio. */
+export const AGENCY_CONTACT: WhatsAppContact = {
+  name: "Reservas Kalix",
+  phone: "+573182309780",
+};
+
+/**
+ * Fuente de verdad de cada persona del catálogo. `folder` relaciona cada
+ * perfil con su carpeta real dentro de src/img/scorts, y `order` controla
+ * el orden explícito de aparición (no depende del alfabeto ni del bundler).
+ */
+interface ProfileInfo {
+  id: string;
+  folder: string;
+  name: string;
+  order: number;
+  age: number;
+  height: string;
+  weight: string;
+  eyes: string;
+  hair: string;
+  bust: string;
+}
+
+const PROFILE_INFO: ProfileInfo[] = [
+  { id: "anahi", folder: "anahi", name: "Anahi", order: 1, age: 25, height: "1.70 m", weight: "65 kg", eyes: "marrón claro", hair: "rojizo", bust: "34A" },
+  { id: "daniela", folder: "daniela", name: "Daniela", order: 2, age: 22, height: "1.65 m", weight: "60 kg", eyes: "cafés", hair: "negro", bust: "34A" },
+  { id: "natasha", folder: "natasha", name: "Natasha", order: 3, age: 25, height: "1.65 m", weight: "55 kg", eyes: "marrón", hair: "naranja", bust: "32A" },
+  { id: "jhulieth", folder: "julieth", name: "Jhulieth", order: 4, age: 22, height: "1.65 m", weight: "70 kg", eyes: "marrones", hair: "negro", bust: "36A" },
+  { id: "celeste", folder: "celeste", name: "Celeste", order: 5, age: 20, height: "1.60 m", weight: "55 kg", eyes: "café", hair: "castaño oscuro", bust: "32A" },
 ];
 
-export const profiles: Profile[] = [
-  {
-    id: "valentina",
-    name: "Valentina",
-    age: 24,
-    city: "Madrid",
-    shortDesc: "Elegancia y sofisticación en cada encuentro.",
-    fullDesc: "Con una personalidad encantadora y una presencia cautivadora, Valentina ofrece momentos de compañía exclusiva. Su elegancia natural y su conversación refinada la convierten en la acompañante ideal para cualquier ocasión especial.",
-    services: ["Cenas de gala", "Eventos corporativos", "Compañía exclusiva", "Viajes de negocios"],
-    location: "Madrid Centro",
-    images: PROFILE_IMAGES,
-    featured: true,
-    whatsappContacts: [
-      { name: "Asesor Comercial", role: "Reservas y tarifas", phone: "+573155140200" },
-      { name: "Coordinador", role: "Disponibilidad y agenda", phone: "+573155140201" },
-    ],
-  },
-  {
-    id: "isabella",
-    name: "Isabella",
-    age: 27,
-    city: "Barcelona",
-    shortDesc: "Discreción y clase en estado puro.",
-    fullDesc: "Isabella combina inteligencia y belleza de manera única. Profesional y discreta, es la compañera perfecta para quienes valoran la privacidad y el buen gusto. Su dominio de varios idiomas la hace ideal para eventos internacionales.",
-    services: ["Eventos sociales", "Cenas privadas", "Acompañamiento VIP", "Viajes internacionales"],
-    location: "Barcelona, Eixample",
-    images: PROFILE_IMAGES,
-    featured: true,
-    whatsappContacts: [
-      { name: "Asesor Comercial", role: "Reservas y tarifas", phone: "+573155140200" },
-      { name: "Coordinador", role: "Disponibilidad y agenda", phone: "+573155140201" },
-    ],
-  },
-  {
-    id: "camila",
-    name: "Camila",
-    age: 25,
-    city: "Valencia",
-    shortDesc: "Carisma y encanto natural.",
-    fullDesc: "Camila destaca por su calidez y autenticidad. Con un estilo fresco y moderno, sabe adaptarse a cualquier ambiente con naturalidad. Su energía positiva y su sonrisa contagiosa hacen de cada momento una experiencia memorable.",
-    services: ["Compañía para eventos", "Cenas exclusivas", "Paseos privados", "Ocio premium"],
-    location: "Valencia Centro",
-    images: PROFILE_IMAGES,
-    featured: true,
-    whatsappContacts: [
-      { name: "Asesor Comercial", role: "Reservas y tarifas", phone: "+573155140200" },
-      { name: "Coordinador", role: "Disponibilidad y agenda", phone: "+573155140201" },
-    ],
-  },
-  {
-    id: "sofia",
-    name: "Sofía",
-    age: 23,
-    city: "Madrid",
-    shortDesc: "Juventud y elegancia refinada.",
-    fullDesc: "Sofía es la definición de frescura y sofisticación. Su presencia ilumina cualquier estancia, y su capacidad para conectar con las personas la convierte en una acompañante excepcional.",
-    services: ["Eventos de lujo", "Compañía selecta", "Cenas románticas", "Arte y cultura"],
-    location: "Madrid Norte",
-    images: PROFILE_IMAGES,
-    featured: false,
-    whatsappContacts: [
-      { name: "Asesor Comercial", role: "Reservas y tarifas", phone: "+573155140200" },
-      { name: "Coordinador", role: "Disponibilidad y agenda", phone: "+573155140201" },
-    ],
-  },
-  {
-    id: "lucia",
-    name: "Lucía",
-    age: 26,
-    city: "Sevilla",
-    shortDesc: "Pasión mediterránea con clase.",
-    fullDesc: "Lucía encarna el espíritu del sur con una elegancia innata. Su personalidad vibrante y su gusto exquisito la hacen perfecta para quienes buscan una experiencia auténtica y memorable.",
-    services: ["Eventos sociales", "Gastronomía premium", "Compañía cultural", "Escapadas de fin de semana"],
-    location: "Sevilla Centro",
-    images: PROFILE_IMAGES,
-    featured: false,
-    whatsappContacts: [
-      { name: "Asesor Comercial", role: "Reservas y tarifas", phone: "+573155140200" },
-      { name: "Coordinador", role: "Disponibilidad y agenda", phone: "+573155140201" },
-    ],
-  },
-  {
-    id: "martina",
-    name: "Martina",
-    age: 28,
-    city: "Barcelona",
-    shortDesc: "Sofisticación cosmopolita.",
-    fullDesc: "Martina es una mujer de mundo con un sentido impecable del estilo. Su experiencia en ambientes internacionales y su cultura la convierten en la compañía ideal para los más exigentes.",
-    services: ["Viajes de lujo", "Eventos corporativos", "Cenas de negocios", "Acompañamiento premium"],
-    location: "Barcelona, Diagonal",
-    images: PROFILE_IMAGES,
-    featured: false,
-    whatsappContacts: [
-      { name: "Asesor Comercial", role: "Reservas y tarifas", phone: "+573155140200" },
-      { name: "Coordinador", role: "Disponibilidad y agenda", phone: "+573155140201" },
-    ],
-  },
-];
+// Importa en tiempo de build todas las imágenes existentes bajo cada carpeta de persona.
+const imageModules = import.meta.glob<{ default: string }>(
+  "/src/img/scorts/*/*.{jpg,jpeg,png,webp}",
+  { eager: true }
+);
 
-export const cities = [...new Set(profiles.map((p) => p.city))];
+const getFolderImages = (folder: string): ProfileImage[] => {
+  const entries = Object.keys(imageModules)
+    .filter((path) => path.includes(`/scorts/${folder}/`))
+    .sort((a, b) => {
+      const aCover = /portada/i.test(a) ? 0 : 1;
+      const bCover = /portada/i.test(b) ? 0 : 1;
+      if (aCover !== bCover) return aCover - bCover;
+      return a.localeCompare(b, undefined, { numeric: true });
+    });
+
+  return entries.map((path) => ({ url: imageModules[path].default }));
+};
+
+export const profiles: Profile[] = PROFILE_INFO
+  .slice()
+  .sort((a, b) => a.order - b.order)
+  .map((info) => ({
+    id: info.id,
+    name: info.name,
+    age: info.age,
+    height: info.height,
+    weight: info.weight,
+    eyes: info.eyes,
+    hair: info.hair,
+    bust: info.bust,
+    order: info.order,
+    images: getFolderImages(info.folder),
+    whatsappContacts: [AGENCY_CONTACT],
+  }));
 
