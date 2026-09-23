@@ -59,6 +59,20 @@ const ProfileDetail = () => {
                 </ul>
               </div>
 
+              {profile.pricing && profile.pricing.length > 0 && (
+                <div>
+                  <h3 className="text-gold-gradient font-semibold text-sm uppercase tracking-wider mb-3">Precio de planes por tiempo</h3>
+                  <ul className="space-y-2">
+                    {profile.pricing.map((p) => (
+                      <li key={p.plan} className="flex items-center justify-between gap-3 text-sm bg-secondary rounded-md px-3 py-2">
+                        <span className="text-muted-foreground">{p.plan}</span>
+                        <span className="text-gold font-heading font-semibold whitespace-nowrap">{p.price}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
               {profile.whatsappContacts && profile.whatsappContacts.length > 0 && (
                 <WhatsAppContactPicker
                   contacts={profile.whatsappContacts}
