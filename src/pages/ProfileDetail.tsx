@@ -31,6 +31,7 @@ const ProfileDetail = () => {
     { label: "Ojos", value: profile.eyes },
     { label: "Cabello", value: profile.hair },
     { label: "Busto", value: profile.bust },
+    { label: "Tatuajes", value: profile.tattoos ? "Sí" : "No" },
   ];
 
   return (
@@ -42,49 +43,47 @@ const ProfileDetail = () => {
           </Link>
 
           <div className="flex flex-col gap-8 max-w-2xl mx-auto">
-            {/* Info */}
-            <div className="space-y-6">
-              <div>
-                <h1 className="font-heading text-3xl font-bold text-silver">{profile.name}</h1>
-              </div>
+            <h1 className="font-heading text-3xl font-bold text-gold-gradient text-center">{profile.name}</h1>
 
+            {/* Rasgos */}
+            <div>
+              <h3 className="text-silver font-semibold text-sm uppercase tracking-wider mb-3">Ficha Técnica</h3>
+              <ul className="list-disc list-inside space-y-1.5 text-sm text-muted-foreground">
+                {stats.map((s) => (
+                  <li key={s.label}>
+                    <span className="text-silver">{s.label}:</span> {s.value}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Tarifas */}
+            {profile.pricing && profile.pricing.length > 0 && (
               <div>
-                <h3 className="text-silver font-semibold text-sm uppercase tracking-wider mb-3">Ficha Técnica</h3>
-                <ul className="grid grid-cols-2 gap-2">
-                  {stats.map((s) => (
-                    <li key={s.label} className="text-sm text-muted-foreground bg-secondary rounded-md px-3 py-2">
-                      <span className="text-silver">{s.label}:</span> {s.value}
+                <h3 className="text-gold-gradient font-semibold text-sm uppercase tracking-wider mb-3">Precio de planes por tiempo</h3>
+                <ul className="space-y-2">
+                  {profile.pricing.map((p) => (
+                    <li key={p.plan} className="flex items-center justify-between gap-3 text-sm bg-secondary rounded-md px-3 py-2">
+                      <span className="text-muted-foreground">{p.plan}</span>
+                      <span className="text-gold font-heading font-semibold whitespace-nowrap">{p.price}</span>
                     </li>
                   ))}
                 </ul>
               </div>
+            )}
 
-              {profile.pricing && profile.pricing.length > 0 && (
-                <div>
-                  <h3 className="text-gold-gradient font-semibold text-sm uppercase tracking-wider mb-3">Precio de planes por tiempo</h3>
-                  <ul className="space-y-2">
-                    {profile.pricing.map((p) => (
-                      <li key={p.plan} className="flex items-center justify-between gap-3 text-sm bg-secondary rounded-md px-3 py-2">
-                        <span className="text-muted-foreground">{p.plan}</span>
-                        <span className="text-gold font-heading font-semibold whitespace-nowrap">{p.price}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+            {profile.whatsappContacts && profile.whatsappContacts.length > 0 && (
+              <WhatsAppContactPicker
+                contacts={profile.whatsappContacts}
+                className="py-3 text-base"
+              />
+            )}
 
-              {profile.whatsappContacts && profile.whatsappContacts.length > 0 && (
-                <WhatsAppContactPicker
-                  contacts={profile.whatsappContacts}
-                  className="py-3 text-base"
-                />
-              )}
-            </div>
-
-            {/* Photos — vertical stack */}
+            {/* Fotos */}
             <div>
               {profile.images.map((image, i) => (
                 <div key={i}>
+                  {i > 0 && <hr className="my-8 border-border" />}
                   <div className="rounded-lg overflow-hidden bg-secondary">
                     <img
                       src={image.url}
@@ -92,9 +91,6 @@ const ProfileDetail = () => {
                       className="w-full block"
                     />
                   </div>
-                  {i < profile.images.length - 1 && (
-                    <hr className="my-8 border-border" />
-                  )}
                 </div>
               ))}
             </div>

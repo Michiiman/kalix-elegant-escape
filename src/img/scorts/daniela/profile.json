@@ -1,0 +1,18 @@
+{
+  "name": "Daniela",
+  "order": 2,
+  "age": 22,
+  "height": "1.65 m",
+  "weight": "60 kg",
+  "eyes": "cafés",
+  "hair": "negro",
+  "bust": "34A",
+  "tattoos": true,
+  "pricing": [
+    { "plan": "Plan inicial mínimo", "price": "350 mil COP" },
+    { "plan": "Plan 90 minutos", "price": "450 mil COP" },
+    { "plan": "Plan VIP 2 horas", "price": "550 mil COP" },
+    { "plan": "Plan VIP 3 horas", "price": "700 mil COP" },
+    { "plan": "Plan VIP Noche (6 horas)", "price": "1.100 mil COP" }
+  ]
+}

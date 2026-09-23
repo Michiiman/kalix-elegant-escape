@@ -22,6 +22,7 @@ export interface Profile {
   eyes: string;
   hair: string;
   bust: string;
+  tattoos: boolean;
   images: ProfileImage[];
   order: number;
   pricing?: PricingPlan[];
@@ -35,51 +36,40 @@ export const AGENCY_CONTACT: WhatsAppContact = {
 };
 
 /**
- * Fuente de verdad de cada persona del catálogo. `folder` relaciona cada
- * perfil con su carpeta real dentro de src/img/scorts, y `order` controla
- * el orden explícito de aparición (no depende del alfabeto ni del bundler).
+ * Datos que cada persona declara en su propio `profile.json`, dentro de su
+ * carpeta en src/img/scorts/<carpeta>/. Agregar una persona nueva solo
+ * requiere crear esa carpeta con sus fotos y su profile.json; quitarla basta
+ * con eliminar la carpeta. No hay ninguna lista de personas en el código.
  */
-interface ProfileInfo {
-  id: string;
-  folder: string;
+interface ProfileJson {
   name: string;
-  order: number;
+  order?: number;
   age: number;
   height: string;
   weight: string;
   eyes: string;
   hair: string;
   bust: string;
+  tattoos?: boolean;
   pricing?: PricingPlan[];
 }
 
-const planPricing = (
-  inicial: string,
-  minutos90: string,
-  vip2h: string,
-  vip3h: string,
-  noche6h: string
-): PricingPlan[] => [
-  { plan: "Plan inicial mínimo", price: inicial },
-  { plan: "Plan 90 minutos", price: minutos90 },
-  { plan: "Plan VIP 2 horas", price: vip2h },
-  { plan: "Plan VIP 3 horas", price: vip3h },
-  { plan: "Plan VIP Noche (6 horas)", price: noche6h },
-];
-
-const PROFILE_INFO: ProfileInfo[] = [
-  { id: "anahi", folder: "anahi", name: "Anahi", order: 1, age: 25, height: "1.70 m", weight: "65 kg", eyes: "marrón claro", hair: "rojizo", bust: "34A", pricing: planPricing("300 mil COP", "400 mil COP", "500 mil COP", "650 mil COP", "900 mil COP") },
-  { id: "daniela", folder: "daniela", name: "Daniela", order: 2, age: 22, height: "1.65 m", weight: "60 kg", eyes: "cafés", hair: "negro", bust: "34A", pricing: planPricing("350 mil COP", "450 mil COP", "550 mil COP", "700 mil COP", "1.100 mil COP") },
-  { id: "natasha", folder: "natasha", name: "Natasha", order: 3, age: 25, height: "1.65 m", weight: "55 kg", eyes: "marrón", hair: "naranja", bust: "32A", pricing: planPricing("280 mil COP", "380 mil COP", "450 mil COP", "600 mil COP", "900 mil COP") },
-  { id: "jhulieth", folder: "julieth", name: "Jhulieth", order: 4, age: 22, height: "1.65 m", weight: "70 kg", eyes: "marrones", hair: "negro", bust: "36A", pricing: planPricing("250 mil COP", "350 mil COP", "400 mil COP", "550 mil COP", "800 mil COP") },
-  { id: "celeste", folder: "celeste", name: "Celeste", order: 5, age: 20, height: "1.60 m", weight: "55 kg", eyes: "café", hair: "castaño oscuro", bust: "32A", pricing: planPricing("250 mil COP", "350 mil COP", "400 mil COP", "550 mil COP", "800 mil COP") },
-];
+// Detecta en tiempo de build todas las carpetas de persona a partir de su profile.json.
+const profileJsonModules = import.meta.glob<{ default: ProfileJson }>(
+  "/src/img/scorts/*/profile.json",
+  { eager: true }
+);
 
 // Importa en tiempo de build todas las imágenes existentes bajo cada carpeta de persona.
 const imageModules = import.meta.glob<{ default: string }>(
   "/src/img/scorts/*/*.{jpg,jpeg,png,webp}",
   { eager: true }
 );
+
+const getFolderName = (path: string): string => {
+  const match = path.match(/\/scorts\/([^/]+)\//);
+  return match ? match[1] : path;
+};
 
 const getFolderImages = (folder: string): ProfileImage[] => {
   const entries = Object.keys(imageModules)
@@ -94,21 +84,25 @@ const getFolderImages = (folder: string): ProfileImage[] => {
   return entries.map((path) => ({ url: imageModules[path].default }));
 };
 
-export const profiles: Profile[] = PROFILE_INFO
-  .slice()
-  .sort((a, b) => a.order - b.order)
-  .map((info) => ({
-    id: info.id,
-    name: info.name,
-    age: info.age,
-    height: info.height,
-    weight: info.weight,
-    eyes: info.eyes,
-    hair: info.hair,
-    bust: info.bust,
-    order: info.order,
-    images: getFolderImages(info.folder),
-    pricing: info.pricing,
-    whatsappContacts: [AGENCY_CONTACT],
-  }));
+export const profiles: Profile[] = Object.entries(profileJsonModules)
+  .map(([path, mod]) => {
+    const folder = getFolderName(path);
+    const data = mod.default;
+    return {
+      id: folder,
+      name: data.name,
+      age: data.age,
+      height: data.height,
+      weight: data.weight,
+      eyes: data.eyes,
+      hair: data.hair,
+      bust: data.bust,
+      tattoos: data.tattoos ?? false,
+      order: data.order ?? Number.MAX_SAFE_INTEGER,
+      images: getFolderImages(folder),
+      pricing: data.pricing,
+      whatsappContacts: [AGENCY_CONTACT],
+    };
+  })
+  .sort((a, b) => (a.order !== b.order ? a.order - b.order : a.name.localeCompare(b.name)));
 

@@ -1,0 +1,18 @@
+{
+  "name": "Anahi",
+  "order": 1,
+  "age": 25,
+  "height": "1.70 m",
+  "weight": "65 kg",
+  "eyes": "marrón claro",
+  "hair": "rojizo",
+  "bust": "34A",
+  "tattoos": false,
+  "pricing": [
+    { "plan": "Plan inicial mínimo", "price": "300 mil COP" },
+    { "plan": "Plan 90 minutos", "price": "400 mil COP" },
+    { "plan": "Plan VIP 2 horas", "price": "500 mil COP" },
+    { "plan": "Plan VIP 3 horas", "price": "650 mil COP" },
+    { "plan": "Plan VIP Noche (6 horas)", "price": "900 mil COP" }
+  ]
+}

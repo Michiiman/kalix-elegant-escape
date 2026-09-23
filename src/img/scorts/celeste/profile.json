@@ -1,0 +1,18 @@
+{
+  "name": "Celeste",
+  "order": 5,
+  "age": 20,
+  "height": "1.60 m",
+  "weight": "55 kg",
+  "eyes": "café",
+  "hair": "castaño oscuro",
+  "bust": "32A",
+  "tattoos": false,
+  "pricing": [
+    { "plan": "Plan inicial mínimo", "price": "250 mil COP" },
+    { "plan": "Plan 90 minutos", "price": "350 mil COP" },
+    { "plan": "Plan VIP 2 horas", "price": "400 mil COP" },
+    { "plan": "Plan VIP 3 horas", "price": "550 mil COP" },
+    { "plan": "Plan VIP Noche (6 horas)", "price": "800 mil COP" }
+  ]
+}

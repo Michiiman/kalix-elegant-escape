@@ -1,0 +1,18 @@
+{
+  "name": "Natasha",
+  "order": 3,
+  "age": 25,
+  "height": "1.65 m",
+  "weight": "55 kg",
+  "eyes": "marrón",
+  "hair": "naranja",
+  "bust": "32A",
+  "tattoos": false,
+  "pricing": [
+    { "plan": "Plan inicial mínimo", "price": "280 mil COP" },
+    { "plan": "Plan 90 minutos", "price": "380 mil COP" },
+    { "plan": "Plan VIP 2 horas", "price": "450 mil COP" },
+    { "plan": "Plan VIP 3 horas", "price": "600 mil COP" },
+    { "plan": "Plan VIP Noche (6 horas)", "price": "900 mil COP" }
+  ]
+}
