@@ -38,7 +38,7 @@ const Catalogo = () => {
       <SEO
         title="Catálogo de Acompañantes en Bucaramanga | Escorts Verificadas"
         description="Catálogo completo de acompañantes exclusivas en Bucaramanga. Perfiles verificados, compañía selecta, servicio profesional con total discreción."
-        keywords="catálogo acompañantes, escorts verificadas, compañía selecta Bucaramanga, perfiles exclusivos, agencia de acompañantes, citas discretas"
+        keywords="catálogo de acompañantes Bucaramanga, escorts verificadas, scorts Bucaramanga, damas de compañía, perfiles exclusivos, agencia de acompañantes"
         path="/bucaramanga/catalogo"
         jsonLd={catalogJsonLd}
       />
@@ -48,7 +48,7 @@ const Catalogo = () => {
             Catálogo de Acompañantes <span className="text-primary">Exclusivas</span>
           </h1>
           <p className="text-center text-muted-foreground mb-6">
-            Conoce nuestras acompañantes verificadas. Compañía selecta y profesional para experiencias discretas en Bucaramanga.
+            Conoce nuestras escorts, acompañantes y damas de compañía verificadas. Servicio profesional y discreto en Bucaramanga.
           </p>
 
           {/* Filters */}

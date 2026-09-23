@@ -61,8 +61,8 @@ const profileJsonModules = import.meta.glob<{ default: ProfileJson }>(
 );
 
 // Importa en tiempo de build todas las imágenes existentes bajo cada carpeta de persona.
-const imageModules = import.meta.glob<{ default: string }>(
-  "/src/img/scorts/*/*.{jpg,jpeg,png,webp}",
+const webpImageModules = import.meta.glob<{ default: string }>(
+  "/src/img/scorts/*/*.webp",
   { eager: true }
 );
 
@@ -72,7 +72,7 @@ const getFolderName = (path: string): string => {
 };
 
 const getFolderImages = (folder: string): ProfileImage[] => {
-  const entries = Object.keys(imageModules)
+  const entries = Object.keys(webpImageModules)
     .filter((path) => path.includes(`/scorts/${folder}/`))
     .sort((a, b) => {
       const aCover = /portada/i.test(a) ? 0 : 1;
@@ -81,7 +81,7 @@ const getFolderImages = (folder: string): ProfileImage[] => {
       return a.localeCompare(b, undefined, { numeric: true });
     });
 
-  return entries.map((path) => ({ url: imageModules[path].default }));
+  return entries.map((path) => ({ url: webpImageModules[path].default }));
 };
 
 export const profiles: Profile[] = Object.entries(profileJsonModules)

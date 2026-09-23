@@ -30,9 +30,9 @@ const Index = () => {
   return (
     <Layout>
       <SEO
-        title="Escorts en Bucaramanga | Agencia de Acompañantes Selectas"
-        description="Kalix Scort: agencia profesional de escorts y acompañantes en Bucaramanga. Compañía selecta, perfiles verificados, citas discretas, servicio de confianza."
-        keywords="escorts Bucaramanga, acompañantes Bucaramanga, agencia de escort, scorts, compañía selecta, servicio de compañía, citas discretas, experiencias exclusivas"
+        title="Escorts y Acompañantes en Bucaramanga"
+        description="Kalix Scort: escorts, acompañantes y damas de compañía en Bucaramanga. Perfiles verificados, servicio profesional, discreción y atención de confianza."
+        keywords="escorts Bucaramanga, scorts Bucaramanga, acompañantes Bucaramanga, damas de compañía Bucaramanga, agencia de escort, perfiles verificados"
         path="/bucaramanga"
         jsonLd={localBusinessJsonLd}
       />
@@ -47,7 +47,7 @@ const Index = () => {
             Compañía Selecta y Profesional
           </h1>
           <p className="mt-6 text-muted-foreground text-lg md:text-xl animate-fade-in-delay leading-relaxed">
-            Kalix Scort: agencia de acompañantes exclusivas en Bucaramanga. Perfiles verificados, servicio de compañía profesional, máxima discreción, privacidad y elegancia garantizada.
+            Kalix Scort: escorts, acompañantes y damas de compañía en Bucaramanga. Perfiles verificados, servicio profesional, máxima discreción, privacidad y elegancia garantizada.
           </p>
           <Link
             to="/bucaramanga/catalogo"
@@ -84,9 +84,9 @@ const Index = () => {
           <div className="relative px-6 md:px-14">
             <Carousel opts={{ align: "start", loop: true }} className="w-full">
               <CarouselContent>
-                {profiles.map((p) => (
+                {profiles.map((p, index) => (
                   <CarouselItem key={p.id} className="basis-full sm:basis-1/2 lg:basis-1/3">
-                    <ProfileCard profile={p} />
+                    <ProfileCard profile={p} priority={index === 0} />
                   </CarouselItem>
                 ))}
               </CarouselContent>

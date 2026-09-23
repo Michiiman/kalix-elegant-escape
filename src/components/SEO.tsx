@@ -3,9 +3,9 @@ import { Helmet } from "react-helmet-async";
 export const SITE_NAME = "Kalix Scort";
 export const SITE_URL = "https://kalixscort.com";
 export const DEFAULT_DESCRIPTION =
-  "Kalix Scort Bucaramanga: acompañantes exclusivas, compañía selecta con máxima discreción y elegancia. Servicio de escortas verificadas, privacidad garantizada.";
+  "Kalix Scort Bucaramanga: escorts, acompañantes y damas de compañía con máxima discreción y elegancia. Perfiles verificados y servicio profesional.";
 export const DEFAULT_KEYWORDS =
-  "escorts Bucaramanga, acompañantes, scorts, compañía selecta, agencia de escort, citas discretas, experiencias exclusivas, escort service, perfiles verificados";
+  "escorts Bucaramanga, scorts Bucaramanga, acompañantes Bucaramanga, damas de compañía Bucaramanga, agencia de escort, perfiles verificados";
 export const DEFAULT_IMAGE =
   "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/5d32b709-6c20-4018-9d39-96d0a9197cc5/id-preview-24831095--e462e095-6dfc-4490-bc5a-332998231fa8.lovable.app-1780631358795.png";
 

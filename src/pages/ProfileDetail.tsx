@@ -111,6 +111,9 @@ const ProfileDetail = () => {
                     <img
                       src={image.url}
                       alt={`Fotografía de ${profile.name}${profile.images.length > 1 ? ` ${i + 1}` : ""}`}
+                      loading={i === 0 ? "eager" : "lazy"}
+                      decoding="async"
+                      fetchPriority={i === 0 ? "high" : "auto"}
                       className="w-full block"
                     />
                   </div>
