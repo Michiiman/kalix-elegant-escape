@@ -8,6 +8,7 @@ const navItems = [
   { label: "Catálogo", path: "/catalogo" },
   { label: "Trabaja con Nosotros", path: "/trabaja-con-nosotros" },
   { label: "Contacto", path: "/contacto" },
+  { label: "Términos y Condiciones", path: "/terminos-y-condiciones" },
 ];
 
 const Header = () => {

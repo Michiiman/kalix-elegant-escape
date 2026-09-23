@@ -8,6 +8,7 @@ import Catalogo from "./pages/Catalogo";
 import ProfileDetail from "./pages/ProfileDetail";
 import TrabajaConNosotros from "./pages/TrabajaConNosotros";
 import Contacto from "./pages/Contacto";
+import TerminosYCondiciones from "./pages/TerminosYCondiciones";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/catalogo/:id" element={<ProfileDetail />} />
           <Route path="/trabaja-con-nosotros" element={<TrabajaConNosotros />} />
           <Route path="/contacto" element={<Contacto />} />
+          <Route path="/terminos-y-condiciones" element={<TerminosYCondiciones />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

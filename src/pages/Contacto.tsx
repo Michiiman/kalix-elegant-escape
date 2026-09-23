@@ -1,5 +1,4 @@
 import Layout from "@/components/Layout";
-import TermsSection from "@/components/TermsSection";
 import WhatsAppContactPicker from "@/components/WhatsAppContactPicker";
 import { AGENCY_CONTACT } from "@/data/profiles";
 
@@ -14,8 +13,6 @@ const Contacto = () => {
           <p className="text-center text-muted-foreground mb-10">
             ¿Tienes alguna consulta? Escríbenos y te responderemos con total discreción.
           </p>
-
-          <TermsSection />
 
           <div className="flex flex-col gap-2 items-center mt-10">
             <h2 className="font-heading text-xl font-semibold text-silver">{AGENCY_CONTACT.name}</h2>
