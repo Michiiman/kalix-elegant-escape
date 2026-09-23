@@ -1,13 +1,24 @@
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import ProfileCard from "@/components/ProfileCard";
+import SEO, { SITE_NAME, SITE_URL, DEFAULT_DESCRIPTION } from "@/components/SEO";
 import { profiles } from "@/data/profiles";
 import { Shield, Eye, Star } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
 
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: SITE_NAME,
+  url: SITE_URL,
+  description: DEFAULT_DESCRIPTION,
+};
+
 const Index = () => {
   return (
     <Layout>
+      <SEO title={SITE_NAME} path="/" jsonLd={organizationJsonLd} />
+
       {/* Hero */}
       <section className="relative flex items-center justify-center min-h-[85vh] bg-gradient-to-b from-background via-card to-background overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(220,38,38,0.06)_0%,_transparent_70%)]" />

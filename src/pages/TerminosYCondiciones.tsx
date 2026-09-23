@@ -1,9 +1,15 @@
 import Layout from "@/components/Layout";
+import SEO from "@/components/SEO";
 import logo from "@/img/Kalix_scort_logo-removebg-preview.png";
 
 const TerminosYCondiciones = () => {
   return (
     <Layout>
+      <SEO
+        title="Términos y Condiciones"
+        description="Consulta los términos y condiciones de uso de Kalix Scort."
+        path="/terminos-y-condiciones"
+      />
       <section className="py-16">
         <div className="container mx-auto px-4 max-w-2xl">
           

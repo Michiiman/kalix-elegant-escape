@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import Layout from "@/components/Layout";
 import ProfileCard from "@/components/ProfileCard";
+import SEO, { SITE_URL } from "@/components/SEO";
 import { profiles } from "@/data/profiles";
 import { Search } from "lucide-react";
 
@@ -21,8 +22,25 @@ const Catalogo = () => {
     });
   }, [search, ageFilter]);
 
+  const catalogJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: profiles.map((p, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: `${SITE_URL}/catalogo/${p.id}`,
+      name: p.name,
+    })),
+  };
+
   return (
     <Layout>
+      <SEO
+        title="Catálogo"
+        description="Explora nuestro catálogo de perfiles selectos: compañía exclusiva con total discreción y elegancia."
+        path="/catalogo"
+        jsonLd={catalogJsonLd}
+      />
       <section className="py-16">
         <div className="container mx-auto px-4">
           <h1 className="font-heading text-3xl md:text-4xl font-bold text-silver text-center mb-10">

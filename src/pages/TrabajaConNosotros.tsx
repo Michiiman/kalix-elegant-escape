@@ -1,6 +1,7 @@
 import Layout from "@/components/Layout";
 import { User, MapPin, Phone, FileText, Camera, Hash } from "lucide-react";
 import WhatsAppContactPicker from "@/components/WhatsAppContactPicker";
+import SEO from "@/components/SEO";
 import { AGENCY_CONTACT } from "@/data/profiles";
 
 const REQUIRED_INFO = [
@@ -14,6 +15,11 @@ const REQUIRED_INFO = [
 
 const TrabajaConNosotros = () => (
   <Layout>
+    <SEO
+      title="Trabaja con Nosotros"
+      description="Únete a Kalix Scort. Conoce los requisitos para formar parte de nuestro equipo selecto."
+      path="/trabaja-con-nosotros"
+    />
     <section className="py-16">
       <div className="container mx-auto px-4 max-w-xl">
         <h1 className="font-heading text-3xl md:text-4xl font-bold text-silver text-center mb-10">
