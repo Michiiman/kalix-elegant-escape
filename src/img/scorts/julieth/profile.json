@@ -9,10 +9,10 @@
   "bust": "36A",
   "tattoos": true,
   "pricing": [
-    { "plan": "Plan inicial mínimo", "price": "250 mil COP" },
-    { "plan": "Plan 90 minutos", "price": "350 mil COP" },
-    { "plan": "Plan VIP 2 horas", "price": "400 mil COP" },
-    { "plan": "Plan VIP 3 horas", "price": "550 mil COP" },
-    { "plan": "Plan VIP Noche (6 horas)", "price": "800 mil COP" }
+    { "plan": "Plan inicial mínimo", "price": "280 mil COP" },
+    { "plan": "Plan 90 minutos", "price": "380 mil COP" },
+    { "plan": "Plan VIP 2 horas", "price": "450 mil COP" },
+    { "plan": "Plan VIP 3 horas", "price": "600 mil COP" },
+    { "plan": "Plan VIP Noche (6 horas)", "price": "900 mil COP" }
   ]
 }
