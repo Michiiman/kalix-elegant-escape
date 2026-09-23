@@ -4,8 +4,8 @@ import { Menu, X } from "lucide-react";
 import logo from "@/img/Kalix_scort_logo-removebg-preview.png";
 
 const navItems = [
-  { label: "Inicio", path: "/" },
-  { label: "Catálogo", path: "/catalogo" },
+  { label: "Inicio", path: "/bucaramanga" },
+  { label: "Catálogo", path: "/bucaramanga/catalogo" },
   { label: "Trabaja con Nosotros", path: "/trabaja-con-nosotros" },
   { label: "Contacto", path: "/contacto" },
   { label: "Términos y Condiciones", path: "/terminos-y-condiciones" },
@@ -18,7 +18,7 @@ const Header = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-silver">
       <div className="container mx-auto flex items-center justify-between h-16 px-4">
-        <Link to="/" className="flex items-center gap-2">
+        <Link to="/bucaramanga" className="flex items-center gap-2">
           <img src={logo} alt="Kalix Scort" className="h-10 w-auto object-contain" />
           <span className="font-heading text-2xl font-bold tracking-wider text-silver">
             Kalix <span className="text-primary">Scort</span>

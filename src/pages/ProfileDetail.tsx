@@ -17,10 +17,15 @@ const ProfileDetail = () => {
   if (!profile) {
     return (
       <Layout>
-        <SEO title="Perfil no encontrado" path={`/catalogo/${id ?? ""}`} noIndex />
+        <SEO
+          title="Perfil no encontrado"
+          description="El perfil que buscas no está disponible."
+          path={`/bucaramanga/catalogo/${id ?? ""}`}
+          noIndex
+        />
         <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
           <p className="text-muted-foreground">Perfil no encontrado.</p>
-          <Link to="/catalogo" className="text-primary hover:underline text-sm">Volver al catálogo</Link>
+          <Link to="/bucaramanga/catalogo" className="text-primary hover:underline text-sm">Volver al catálogo</Link>
         </div>
       </Layout>
     );
@@ -40,22 +45,23 @@ const ProfileDetail = () => {
     "@context": "https://schema.org",
     "@type": "Person",
     name: profile.name,
-    url: `${SITE_URL}/catalogo/${profile.id}`,
+    url: `${SITE_URL}/bucaramanga/catalogo/${profile.id}`,
     image: profile.images[0]?.url,
   };
 
   return (
     <Layout>
       <SEO
-        title={profile.name}
-        description={`Conoce a ${profile.name}: perfil exclusivo de Kalix Scort con total discreción y elegancia.`}
-        path={`/catalogo/${profile.id}`}
+        title={`${profile.name} | Acompañante Exclusiva en Bucaramanga`}
+        description={`${profile.name}: acompañante exclusiva y profesional en Bucaramanga. Compañía selecta, experiencias discretas y privadas. Reserva en línea disponible.`}
+        keywords={`${profile.name}, acompañante Bucaramanga, escort verificada, compañía selecta, cita discreta, experiencia exclusiva`}
+        path={`/bucaramanga/catalogo/${profile.id}`}
         image={profile.images[0]?.url}
         jsonLd={profileJsonLd}
       />
       <section className="pt-6 pb-16">
         <div className="container mx-auto px-4 max-w-4xl">
-          <Link to="/catalogo" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-8">
+          <Link to="/bucaramanga/catalogo" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-8">
             <ArrowLeft size={16} /> Volver al catálogo
           </Link>
 

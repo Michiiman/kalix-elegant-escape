@@ -10,8 +10,8 @@ const root = join(__dirname, "..");
 const SITE_URL = "https://kalixscort.com";
 
 const staticRoutes = [
-  { path: "/", changefreq: "weekly", priority: "1.0" },
-  { path: "/catalogo", changefreq: "daily", priority: "0.9" },
+  { path: "/bucaramanga", changefreq: "weekly", priority: "1.0" },
+  { path: "/bucaramanga/catalogo", changefreq: "daily", priority: "0.9" },
   { path: "/trabaja-con-nosotros", changefreq: "monthly", priority: "0.5" },
   { path: "/contacto", changefreq: "monthly", priority: "0.5" },
   { path: "/terminos-y-condiciones", changefreq: "yearly", priority: "0.3" },
@@ -21,7 +21,7 @@ const scortsDir = join(root, "src/img/scorts");
 const profileRoutes = existsSync(scortsDir)
   ? readdirSync(scortsDir, { withFileTypes: true })
       .filter((entry) => entry.isDirectory() && existsSync(join(scortsDir, entry.name, "profile.json")))
-      .map((entry) => ({ path: `/catalogo/${entry.name}`, changefreq: "weekly", priority: "0.8" }))
+      .map((entry) => ({ path: `/bucaramanga/catalogo/${entry.name}`, changefreq: "weekly", priority: "0.8" }))
   : [];
 
 const routes = [...staticRoutes, ...profileRoutes];

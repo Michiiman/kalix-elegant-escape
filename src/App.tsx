@@ -22,12 +22,13 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/catalogo" element={<Catalogo />} />
-            <Route path="/catalogo/:id" element={<ProfileDetail />} />
+            <Route path="/bucaramanga" element={<Index />} />
+            <Route path="/bucaramanga/catalogo" element={<Catalogo />} />
+            <Route path="/bucaramanga/catalogo/:id" element={<ProfileDetail />} />
             <Route path="/trabaja-con-nosotros" element={<TrabajaConNosotros />} />
             <Route path="/contacto" element={<Contacto />} />
             <Route path="/terminos-y-condiciones" element={<TerminosYCondiciones />} />
+            <Route path="/" element={<Index />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

@@ -16,8 +16,8 @@ const Footer = () => (
         <h4 className="text-silver font-semibold text-sm mb-4 uppercase tracking-wider">Enlaces</h4>
         <ul className="space-y-2 text-sm">
           {[
-            { label: "Inicio", path: "/" },
-            { label: "Catálogo", path: "/catalogo" },
+            { label: "Inicio", path: "/bucaramanga" },
+            { label: "Catálogo", path: "/bucaramanga/catalogo" },
             { label: "Trabaja con Nosotros", path: "/trabaja-con-nosotros" },
             { label: "Contacto", path: "/contacto" },
           ].map((l) => (

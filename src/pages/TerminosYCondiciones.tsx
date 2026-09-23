@@ -6,8 +6,9 @@ const TerminosYCondiciones = () => {
   return (
     <Layout>
       <SEO
-        title="Términos y Condiciones"
-        description="Consulta los términos y condiciones de uso de Kalix Scort."
+        title="Términos y Condiciones | Kalix Scort"
+        description="Términos y condiciones de uso de Kalix Scort Bucaramanga. Política de privacidad y protección de datos."
+        keywords="términos condiciones, privacidad, política escort"
         path="/terminos-y-condiciones"
       />
       <section className="py-16">

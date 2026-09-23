@@ -16,8 +16,9 @@ const REQUIRED_INFO = [
 const TrabajaConNosotros = () => (
   <Layout>
     <SEO
-      title="Trabaja con Nosotros"
-      description="Únete a Kalix Scort. Conoce los requisitos para formar parte de nuestro equipo selecto."
+      title="Trabaja con Nosotros | Kalix Scort Bucaramanga"
+      description="\u00danete a nuestro equipo en Bucaramanga. Conoce los requisitos para ser parte de Kalix Scort."
+      keywords="trabaja con nosotros escort, empleos Bucaramanga, escorta Bucaramanga"
       path="/trabaja-con-nosotros"
     />
     <section className="py-16">

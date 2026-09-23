@@ -7,8 +7,9 @@ const Contacto = () => {
   return (
     <Layout>
       <SEO
-        title="Contacto"
-        description="Contáctanos con total discreción. Estamos disponibles para resolver tus consultas."
+        title="Contacto | Escorts en Bucaramanga"
+        description="Contáctanos con total discreción. Disponibles en Bucaramanga para reservas y consultas."
+        keywords="contacto escort Bucaramanga, reservas Bucaramanga, citas Bucaramanga"
         path="/contacto"
       />
       <section className="py-16">
